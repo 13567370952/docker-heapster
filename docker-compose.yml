@@ -12,32 +12,32 @@ heapster-1:
 #  extra_hosts:
 #    - "c9t24960:16.250.41.177"
 #    - "centos-minion:16.250.22.115"
-  ports:
-    - "8082:8082"
+#  ports:
+#    - "8082:8082"
   links:
     - influxdb
-#heapster-2:
-#  image: gcr.io/google_containers/heapster:v1.0.0
-#  command:
-#    - --source=kubernetes:http://c9t24258.itcs.hpecorp.net:8080?inClusterConfig=false&insecure=true&kubeletHttps=true&kubeletPort=10250
-#    - --sink=influxdb:http://influxdb:8086
-##  extra_hosts:
-##    - "centos-minion:16.250.22.115"
-##  ports:
-##    - "8082:8082"
-#  links:
-#    - influxdb
-#heapster-3:
-#  image: gcr.io/google_containers/heapster:v1.0.0
-#  command:
-#    - --source=kubernetes:http://c9t24254.itcs.hpecorp.net:8080?inClusterConfig=false&insecure=true&kubeletHttps=true&kubeletPort=10250
-#    - --sink=influxdb:http://influxdb:8086
-##  extra_hosts:
-##    - "centos-minion:16.250.22.115"
-##  ports:
-##    - "8082:8082"
-#  links:
-#    - influxdb
+heapster-2:
+  image: gcr.io/google_containers/heapster:v1.1.0
+  command:
+    - --source=kubernetes:http://c9t24258.itcs.hpecorp.net:8080?inClusterConfig=false&insecure=true&kubeletHttps=true&kubeletPort=10250
+    - --sink=influxdb:http://influxdb:8086
+#  extra_hosts:
+#    - "centos-minion:16.250.22.115"
+#  ports:
+#    - "8082:8082"
+  links:
+    - influxdb
+heapster-3:
+  image: gcr.io/google_containers/heapster:v1.0.0
+  command:
+    - --source=kubernetes:http://c9t24254.itcs.hpecorp.net:8080?inClusterConfig=false&insecure=true&kubeletHttps=true&kubeletPort=10250
+    - --sink=influxdb:http://influxdb:8086
+#  extra_hosts:
+#    - "centos-minion:16.250.22.115"
+#  ports:
+#    - "8082:8082"
+  links:
+    - influxdb
 
 influxdb:
   image: kubernetes/heapster_influxdb:v0.5
