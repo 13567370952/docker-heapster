@@ -38,6 +38,18 @@ heapster-3:
 #    - "8082:8082"
   links:
     - influxdb
+heapster-4:
+  image: gcr.io/google_containers/heapster:v1.0.0
+  command:
+    - --source=kubernetes:http://16.77.54.226:8080?inClusterConfig=false&insecure=true&kubeletHttps=true&kubeletPort=10250
+    - --sink=influxdb:http://influxdb:8086
+#  extra_hosts:
+#    - "centos-minion:16.250.22.115"
+#  ports:
+#    - "8082:8082"
+  links:
+    - influxdb
+
 
 influxdb:
   image: kubernetes/heapster_influxdb:v0.5
