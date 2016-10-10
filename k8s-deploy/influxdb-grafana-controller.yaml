@@ -69,10 +69,15 @@ spec:
       volumes:
       - name: influxdb-persistent-storage
 #        emptyDir: {}
-        hostPath:
-          path: /home/huanlian/work/docker-heapster/influxdb-kube
+#        hostPath:
+#          path: /home/huanlian/work/docker-heapster/influxdb-kube
+        glusterfs:
+          endpoints: glusterfs-cluster
+          path: influxdb
       - name: grafana-persistent-storage
 #        emptyDir: {}
-        hostPath:
-          path: /home/huanlian/work/docker-heapster/grafana-kube
-
+#        hostPath:
+#          path: /home/huanlian/work/docker-heapster/grafana-kube
+        glusterfs:
+          endpoints: glusterfs-cluster
+          path: grafana
